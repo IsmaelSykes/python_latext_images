@@ -1,6 +1,8 @@
 import numpy as np
 from sympy import *
 import matplotlib.pyplot as plt
+import random
+
 x,y,z,t,j,k = symbols('x y z t j k') 
 
 print("Hola Ismael")
@@ -40,5 +42,58 @@ print("----------------------------------")
 numbers = {atom for atom in solve.atoms() if atom.is_number}
 for i in numbers:
 	print(latex(i))
-	
+print("----------------------------------")
+integers = []
+for i in numbers:
+   if(i.is_integer):
+      integers.append(i)
+
+for i in integers:
+   print(latex(i))
+
+
+print("----------------------------------")
+
+attem = 0
+flag = False
+while(flag == False):# existe el numero ramdon en numbes
+   gg=random.randint(0, 50)
+   if(gg in integers):
+      flag = True
+      index = 0
+      flag_while = False 
+      flag = True
+   attem = attem+1
+   print('attem: ',attem)
+   print('gg: ',gg)
+
+print("----------------------------------")
+attem = 0
+while(flag_while == False):# buscamos el index
+   for i in range(len(integers)):
+      if(integers[i] == gg):
+         print('iteration: ',i)
+         print('gg=',gg, 'integers[%d]='%(i),integers[i],'OK')
+         index = i
+         print('index: ',index)
+         flag_while = True
+      else:
+         print('iteration: ',i)
+         print('gg=',gg, 'integers[%d]='%(i),integers[i],'Error')
+   attem = attem+1
+   print('attem: ',attem)
+
+
+
+print('numbers is: ',integers[index], 'index: ',index)
+old = str(integers[index])
+new = str(gg*2)
+
+if(flag== true):
+   x = solve_latex.replace(old, new,1)
+   print(x)
+   preview("$$"+x+"$$", viewer='file', filename='imag3.png',dvioptions=['-D','400'])
+
+
+
 #preview("$$"+r+"$$", viewer='file', filename='imag1.png',dvioptions=['-D','400'])
